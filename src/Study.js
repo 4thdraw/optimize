@@ -1,18 +1,26 @@
-import { useRef, useState } from 'react';
+import { useRef, useEffect } from 'react';
+import './btn.scss'
+
 const Study = () => {
-    const buttonRef = useRef();
-    const textarry =["열기", "닫기"];    
+    const buttonRef = useRef();   
 
-    const [btn, setBtn] = useState(0);    
-
-    const handleClick = () => {
-        setBtn((prevBtn) => (prevBtn + 1) % textarry.length);     
+   useEffect(() => {
+    const button = buttonRef.current; 
+ 
+    const handleButtonClick = () => {
+        button.classList.toggle('on');
     };
+
+    button.addEventListener('click', handleButtonClick);
+
+            return () => {
+                button.removeEventListener('click', handleButtonClick);
+            };
+    }, []); // [] 1회진행   
 
     return (
         <div>
-            <button ref={buttonRef} onClick={handleClick}>
-                {textarry[btn]}
+            <button ref={buttonRef} className='btn'>                
             </button>
         </div>
     );

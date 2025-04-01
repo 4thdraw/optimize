@@ -1,0 +1,8 @@
+.btn{   
+    &::before{
+        content: "열기";
+    }
+    &.on::before{
+        content: "닫기";
+    }
+}
